@@ -1,0 +1,14 @@
+{
+  "name": "phool",
+  "version": "0.0.1",
+  "description": "unique text visualization as flowers",
+  "main": "index.js",
+  "author": "delesslin",
+  "license": "MIT",
+  "scripts": {
+    "start": "node ."
+  },
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
