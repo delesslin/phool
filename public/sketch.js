@@ -5,6 +5,12 @@ let arr = []
 let tick = 0
 let reset = 0
 let bg = 255
+const socket = io()
+socket.on('init', (data) => {
+  console.log(data)
+  txt = data
+  document.getElementById('txt').innerText = txt
+})
 // for (let i = 0; i < txt.length; i++) {
 //   console.log(txt.charCodeAt(i))
 // }
@@ -37,6 +43,7 @@ function handleNewText() {
   reset = 1
 
   txt = document.getElementById('txt').value
+  socket.emit('new', txt)
   arr = []
   // const mapChar = (index, rangeMin, rangeMax) => {
   //   return map(txt.charCodeAt(index) || 0, 0, 350, rangeMin, rangeMax)
