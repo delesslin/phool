@@ -1,0 +1,19 @@
+{
+  "name": "phool",
+  "version": "0.0.1",
+  "description": "unique text visualization as flowers",
+  "main": "index.js",
+  "author": "delesslin",
+  "license": "MIT",
+  "scripts": {
+    "start": "node .",
+    "dev": "nodemon . --ignore 'db/*'"
+  },
+  "dependencies": {
+    "csvtojson": "^2.0.10",
+    "express": "^4.17.3",
+    "fs": "^0.0.1-security",
+    "http": "^0.0.1-security",
+    "socket.io": "^4.5.1"
+  }
+}

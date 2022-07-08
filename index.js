@@ -29,7 +29,6 @@ app.get('/phools/socket.io/socket.io.js', (req, res) => {
   res.sendFile(__dirname + '/node_modules/socket.io/client-dist/socket.io.js');
 });
 
-
 //Whenever someone connects this gets executed
 io.on('connection', function (socket) {
   console.log('A user connected')
