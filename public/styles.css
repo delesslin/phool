@@ -28,7 +28,7 @@ main {
   position: absolute;
   border-radius: 10px;
   background-color: white;
-
+  left: -300px;
   box-shadow: 1px 1px 2px #444;
 
   border-radius: 10px;
@@ -43,6 +43,7 @@ main {
   display: grid;
   justify-content: center;
   align-items: flex-start;
+
 }
 textarea {
   outline: none;

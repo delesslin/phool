@@ -9,11 +9,11 @@ const server = http.listen(PORT, (err) => {
   if (err) {
     console.error(err)
   }
-  console.log(`Listening on http://localhost:${PORT}`)
+  console.log(`Listening on http://localhost:${PORT}/phools`)
 })
 
 const { Server } = require('socket.io')
-const io = new Server(server, {path: '/phools/io'})
+const io = new Server(server, { path: '/phools/io' })
 
 let DATA = []
 path.resolve(__dirname, '.')
@@ -26,8 +26,8 @@ app.get('/phools', (req, res) => {
   res.sendFile(__dirname + '/public/index.html')
 })
 app.get('/phools/socket.io/socket.io.js', (req, res) => {
-  res.sendFile(__dirname + '/node_modules/socket.io/client-dist/socket.io.js');
-});
+  res.sendFile(__dirname + '/node_modules/socket.io/client-dist/socket.io.js')
+})
 
 //Whenever someone connects this gets executed
 io.on('connection', function (socket) {
