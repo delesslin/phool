@@ -5,6 +5,7 @@ let arr = []
 let tick = 0
 let reset = 0
 let bg = 255
+
 const speed = 5
 const el = document.querySelector('#sketch')
 el.addEventListener('click', (ev) => {
@@ -33,7 +34,8 @@ icon.addEventListener('click', (ev) => {
     }
   }, speed)
 })
-const socket = io()
+const socket = io({path: '/phools/io'})
+
 socket.on('init', (data) => {
   console.log(data)
   txt = data
@@ -66,6 +68,7 @@ function handleNewText() {
   reset = 1
 
   txt = document.getElementById('txt').value
+console.log('emitting new text: ', txt)
   socket.emit('new', txt)
   arr = []
   // const mapChar = (index, rangeMin, rangeMax) => {
