@@ -1,4 +1,4 @@
-const size = 600
+const size = 200
 let txt = 'My name is Roo and I am an artist'
 const center = { x: 0, y: 0 }
 let arr = []
@@ -21,7 +21,8 @@ const mapChar = (index, rangeMin, rangeMax) => {
   return map(txt.charCodeAt(index) % 100 || 0, 0, 100, rangeMin, rangeMax)
 }
 function setup() {
-  createCanvas(size, size)
+  const canvas = createCanvas(size, size)
+  canvas.parent('sketch')
   background(bg)
   frameRate(2)
   const bttn = createButton('grow!', 0, 0)

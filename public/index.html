@@ -8,13 +8,51 @@
       body {
         background-color: rgba(0, 0, 0, 0);
       }
+      main {
+        width: 233px;
+        height: 300px;
+        border-radius: 10px;
+        border-color: black;
+        border-width: 2px;
+        border-style: dotted;
+        overflow: hidden;
+        display: grid;
+        place-items: center;
+        position: relative;
+      }
+      #sketch {
+        height: 100%;
+        width: 100%;
+
+        display: grid;
+        place-items: center;
+      }
+      #input {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        background-color: red;
+        left: -100px;
+        box-shadow: 1px 1px 1px black;
+        display: grid;
+        place-items: center;
+        border-radius: 10px;
+      }
+      textarea {
+        outline: none;
+        resize: none;
+        border: none;
+      }
     </style>
   </head>
   <body>
     <main>
-      <textarea id="txt" name="txt" rows="20" cols="20">
-Lorem ipsum dolor sit amet...</textarea
-      >
+      <div id="sketch"></div>
+      <div id="input">
+        <textarea id="txt" name="txt" rows="18" cols="25">
+          Lorem ipsum dolor sit amet...</textarea
+        >
+      </div>
     </main>
   </body>
 </html>
