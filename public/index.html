@@ -1,58 +1,37 @@
 <html>
   <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.js"></script>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="sketch.js"></script>
-    <script></script>
-    <style>
-      body {
-        background-color: rgba(0, 0, 0, 0);
-      }
-      main {
-        width: 233px;
-        height: 300px;
-        border-radius: 10px;
-        border-color: black;
-        border-width: 2px;
-        border-style: dotted;
-        overflow: hidden;
-        display: grid;
-        place-items: center;
-        position: relative;
-      }
-      #sketch {
-        height: 100%;
-        width: 100%;
 
-        display: grid;
-        place-items: center;
-      }
-      #input {
-        height: 100%;
-        width: 100%;
-        position: absolute;
-        background-color: red;
-        left: -100px;
-        box-shadow: 1px 1px 1px black;
-        display: grid;
-        place-items: center;
-        border-radius: 10px;
-      }
-      textarea {
-        outline: none;
-        resize: none;
-        border: none;
-      }
-    </style>
+    <link rel="stylesheet" href="styles.css" />
+    <style></style>
   </head>
   <body>
     <main>
-      <div id="sketch"></div>
       <div id="input">
-        <textarea id="txt" name="txt" rows="18" cols="25">
-          Lorem ipsum dolor sit amet...</textarea
-        >
+        <div>
+          <textarea id="txt" name="txt" rows="17" cols="22">
+            Lorem ipsum dolor sit amet...</textarea
+          >
+          <div id="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+              <path
+                d="M64 95.1H0c0 123.8 100.3 224 224 224v128C224 465.6 238.4 480 255.1 480S288 465.6 288 448V320C288 196.3 187.7 95.1 64 95.1zM448 32c-84.25 0-157.4 46.5-195.8 115.3c27.75 30.12 48.25 66.88 59 107.5C424 243.1 512 147.9 512 32H448z"
+              />
+            </svg>
+          </div>
+        </div>
       </div>
+      <div id="sketch"></div>
     </main>
+    <script src="sketch.js"></script>
+    <script></script>
   </body>
 </html>

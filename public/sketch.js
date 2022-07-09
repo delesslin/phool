@@ -5,28 +5,50 @@ let arr = []
 let tick = 0
 let reset = 0
 let bg = 255
+const speed = 5
+const el = document.querySelector('#sketch')
+el.addEventListener('click', (ev) => {
+  console.log('CLICK')
+  document.querySelector('#input').style.left = '0px'
+  let opacity = 0
+  const int = setInterval(() => {
+    opacity = opacity + 0.01
+    document.querySelector('#input').style.opacity = opacity
+    if (opacity >= 1) {
+      clearInterval(int)
+    }
+  }, speed)
+})
+const icon = document.querySelector('#icon')
+icon.addEventListener('click', (ev) => {
+  handleNewText()
+  console.log('CLICK')
+  let opacity = 1
+  let int = setInterval(() => {
+    opacity = opacity - 0.01
+    document.querySelector('#input').style.opacity = opacity
+    if (opacity <= 0) {
+      document.querySelector('#input').style.left = '-300px'
+      clearInterval(int)
+    }
+  }, speed)
+})
 const socket = io()
 socket.on('init', (data) => {
   console.log(data)
   txt = data
   document.getElementById('txt').innerText = txt
 })
-// for (let i = 0; i < txt.length; i++) {
-//   console.log(txt.charCodeAt(i))
-// }
-// const txt = document.getElementById('txt')
-// console.log(txt)
 
 const mapChar = (index, rangeMin, rangeMax) => {
   return map(txt.charCodeAt(index) % 100 || 0, 0, 100, rangeMin, rangeMax)
 }
 function setup() {
-  const canvas = createCanvas(size, size)
+  const canvas = createCanvas(233, 300)
   canvas.parent('sketch')
-  background(bg)
+
   frameRate(2)
-  const bttn = createButton('grow!', 0, 0)
-  bttn.mousePressed(handleNewText)
+
   angleMode(DEGREES)
   txt = document.getElementById('txt').value
   arr.push(center)
@@ -63,8 +85,8 @@ function handleNewText() {
 function draw() {
   // let txt = document.getElementById('txt').value
   // console.log(txt)
+  background('rgba(255,255,255,0.01)')
   if (reset) {
-    background(bg)
     reset = 0
     tick = 0
   }
@@ -94,22 +116,3 @@ function draw() {
   }
   tick += 1
 }
-
-// function Line(start, end) {
-//   this.tick = 0
-//   let d = dist(x1, y1, x2, y2)
-//   let sw = map(d, 0, 100, 20, 0)
-//   let arr = []
-
-//   this.draw = function () {}
-// }
-// class Line {
-//   constructor(x1, y1, x2, y2) {
-//     this.start = this.end = createVector(x2, y2)
-//   }
-//   draw() {
-//     if (tick < 10) {
-//       tick++
-//     }
-//   }
-// }
