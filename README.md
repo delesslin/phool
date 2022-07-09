@@ -1,5 +1,6 @@
 Live iframe:
-`<iframe
+```
+  <iframe
       id="inlineFrameExample"
       title="Inline Frame Example"
       width="250"
@@ -7,6 +8,7 @@ Live iframe:
       frameborder="0"
       src="https://game-server.eyebeam.org/phools/"
     >
-    </iframe>`
+  </iframe>
+```
 
 Local iframe example viewable in /example.html
