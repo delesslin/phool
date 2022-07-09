@@ -1,0 +1,76 @@
+body {
+  background-color: rgba(0, 0, 0, 0);
+  display: grid;
+  place-items: center;
+}
+main {
+  width: 233px;
+  height: 300px;
+  border-radius: 10px;
+  border-color: black;
+  border-width: 2px;
+  border-style: dotted;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+#sketch {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+#input {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  border-radius: 10px;
+  background-color: white;
+
+  box-shadow: 1px 1px 2px #444;
+
+  border-radius: 10px;
+}
+.active {
+  left: 0px;
+}
+#input > div {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  justify-content: center;
+  align-items: flex-start;
+}
+textarea {
+  outline: none;
+  resize: none;
+  border: none;
+  font-family: 'Cutive Mono', monospace;
+  text-align: center;
+  margin-top: 20px;
+}
+#icon {
+  align-self: flex-end;
+  width: 35px;
+  height: 35px;
+  border-radius: 35px;
+  border-style: dotted;
+  border-width: 2px;
+  border-color: #444;
+  display: grid;
+  place-items: center;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  cursor: pointer;
+  margin: 5px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+svg {
+  width: 20px;
+  height: 20px;
+  color: #444;
+}
