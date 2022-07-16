@@ -1,0 +1,15 @@
+body {
+  display: flex;
+  padding: 0px;
+  margin: 0px;
+  background-color: green;
+  font-family: monospace;
+  font-size: 10px;
+  line-height: 10px;
+  overflow: hidden;
+
+}
+
+
+
+

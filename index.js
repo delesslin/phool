@@ -25,6 +25,10 @@ app.get('/phools', (req, res) => {
   console.log('got a get!')
   res.sendFile(__dirname + '/public/index.html')
 })
+app.get('/phools/bg', (req, res) => {
+  console.log('got a get!')
+  res.sendFile(__dirname + '/public/bg.html')
+})
 app.get('/phools/socket.io/socket.io.js', (req, res) => {
   res.sendFile(__dirname + '/node_modules/socket.io/client-dist/socket.io.js')
 })
