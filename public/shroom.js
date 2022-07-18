@@ -31,7 +31,7 @@ function Stalk(start, end, diameter = 20) {
     }
     const mostRecent = this.array[this.array.length - 1]
     const newVect = createVector(
-      mostRecent.x + (noise(mostRecent.x) * 10 - 5),
+      mostRecent.x + (noise(mostRecent.y) - 0.5) * 2,
       mostRecent.y - 1
     )
     this.array.push(newVect)
