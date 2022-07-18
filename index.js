@@ -1,5 +1,6 @@
 const fs = require('fs')
 const path = require('path')
+const field = require('./genField')()
 const seedDB = require('./db/seedDB')
 const express = require('express')
 const app = express()
@@ -33,6 +34,10 @@ app.get('/phools/socket.io/socket.io.js', (req, res) => {
   res.sendFile(__dirname + '/node_modules/socket.io/client-dist/socket.io.js')
 })
 
+app.get('/phools/bg/field', (req, res) => {
+  res.send(field)
+})
+
 //Whenever someone connects this gets executed
 io.on('connection', function (socket) {
   console.log('A user connected')
@@ -41,6 +46,7 @@ io.on('connection', function (socket) {
     console.log('Adding to db:', txt)
     fs.writeFileSync(dbPath, JSON.stringify([...readDB(), txt]))
   })
+
   //Whenever someone disconnects this piece of code executed
   socket.on('disconnect', function () {
     console.log('A user disconnected')
