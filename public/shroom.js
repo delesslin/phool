@@ -1,3 +1,15 @@
+String.prototype.hashCode = function () {
+  var hash = 0,
+    i,
+    chr
+  if (this.length === 0) return hash
+  for (i = 0; i < this.length; i++) {
+    chr = this.charCodeAt(i)
+    hash = (hash << 5) - hash + chr
+    hash |= 0 // Convert to 32bit integer
+  }
+  return hash
+}
 function Branch(begin, end) {
   this.begin = begin
   this.end = end
@@ -5,7 +17,7 @@ function Branch(begin, end) {
   this.display = true
   this.show = function () {
     if (this.display) {
-      stroke(0, 10)
+      stroke(0, 50)
       line(this.begin.x, this.begin.y, this.end.x, this.end.y)
     }
   }
@@ -42,15 +54,19 @@ function Stalk(start, end, diameter = 20) {
   }
 }
 
-function Fungus() {
-  this.stalk = new Stalk(
-    createVector(width / 2, height),
-    createVector(width / 2, 10),
-    2
-  )
-  this.cap = []
-  this.tick = 0
-  this.reset = function () {
+class Fungus {
+  constructor() {
+    this.stalk = new Stalk(
+      createVector(width / 2, height),
+      createVector(width / 2, 10),
+      2
+    )
+    this.cap = []
+    this.tick = 0
+    this.loaded = false
+    this._txt = ''
+  }
+  reset() {
     this.tick = 0
     this.cap = []
     this.stalk = new Stalk(
@@ -59,7 +75,22 @@ function Fungus() {
       2
     )
   }
-  this.show = function () {
+  get txt() {
+    return this._txt
+  }
+  set txt(val) {
+    if (this._txt.length > 0) {
+      console.error(
+        'Fungus.txt can only be set once and this one has already been set'
+      )
+    }
+    this._txt = val
+    this._hash = Math.abs(val.hashCode())
+    console.log(this._hash)
+    this.loaded = true
+  }
+  show() {
+    if (!this.loaded) return
     if (!this.stalk.grown) {
       frameRate(50)
       this.stalk.show()
@@ -76,14 +107,24 @@ function Fungus() {
         this.cap[0] = root
       }
       if (this.tick < 10) {
-        background('rgba(255,255,255,0.01)')
+        // background('rgba(255,255,255,0.01)')
         for (let i = this.cap.length - 1; i >= 0; i--) {
           this.cap[i].show()
           if (!this.cap[i].finished) {
-            this.cap.push(this.cap[i].branch((PI / 4) * (noise(i) - 0.05)))
-            this.cap.push(
-              this.cap[i].branch(((-1 * PI) / 4) * (noise(i) - 0.05))
-            )
+            const num = Math.floor(map(this._txt.length, 0, 17 * 22, 2, 6))
+
+            const max = map(this._hash, 0, 9999999999, 25, 120)
+            // console.log(max)
+            let deg = map(noise(this._hash), 0, 1, -1 * max, 0)
+            for (let j = 0; j < num; j++) {
+              // console.log(deg)
+              this.cap.push(this.cap[i].branch(deg))
+              deg = deg + (max * 2) / num
+            }
+            this.cap[i].finished = true
+            // this.cap.push(
+            //   this.cap[i].branch(((-1 * PI) / 4) * (noise(i) - 0.05))
+            // )
           }
         }
         this.tick++

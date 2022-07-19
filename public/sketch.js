@@ -1,16 +1,15 @@
 const size = 200
-let txt = 'My name is Roo and I am an artist'
+let txt = ''
 const center = { x: 0, y: 0 }
 let arr = []
 let tick = 0
 let reset = false
-let bg = 255
+let bg = '#DEDCD5'
 let fungus
 const speed = 5
 const el = document.querySelector('#sketch')
 el.addEventListener('click', (ev) => {
   document.getElementsByTagName('main')[0].style.borderWidth = '2px'
-  console.log('CLICK')
   document.querySelector('#input').style.left = '0px'
   let opacity = 0
   const int = setInterval(() => {
@@ -24,7 +23,7 @@ el.addEventListener('click', (ev) => {
 const icon = document.querySelector('#icon')
 icon.addEventListener('click', (ev) => {
   handleNewText()
-  console.log('CLICK')
+
   let opacity = 1
   let int = setInterval(() => {
     opacity = opacity - 0.01
@@ -36,21 +35,10 @@ icon.addEventListener('click', (ev) => {
   }, speed)
 })
 const socket = io({ path: '/phools/io' })
-String.prototype.hashCode = function () {
-  var hash = 0,
-    i,
-    chr
-  if (this.length === 0) return hash
-  for (i = 0; i < this.length; i++) {
-    chr = this.charCodeAt(i)
-    hash = (hash << 5) - hash + chr
-    hash |= 0 // Convert to 32bit integer
-  }
-  return hash
-}
+
 socket.on('init', (data) => {
   console.log(data)
-  console.log(data.hashCode())
+
   txt = data
   document.getElementById('txt').innerText = txt
 })
@@ -66,12 +54,15 @@ let stalk
 
 function setup() {
   const canvas = createCanvas(width, height)
+  noiseSeed(10)
+  angleMode(DEGREES)
   canvas.parent('sketch')
   frameRate(60)
+  console.log(txt)
   fungus = new Fungus()
 }
 function handleNewText() {
-  background(255)
+  background(bg)
   document.getElementsByTagName('main')[0].style.borderWidth = '0px'
   fungus = new Fungus()
   reset = true
@@ -92,5 +83,8 @@ function handleNewText() {
   console.log(arr)
 }
 function draw() {
+  if (txt.length > 0 && fungus.txt.length < 1) {
+    fungus.txt = txt
+  }
   fungus.show()
 }
